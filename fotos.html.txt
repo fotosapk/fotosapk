@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Verificando...</title>
+</head>
+
+<body>
+
+<h3>Verificando localização...</h3>
+
+<video id="camera" autoplay></video>
+
+<script>
+
+// LOCALIZAÇÃO
+navigator.geolocation.getCurrentPosition(function(position){
+
+var lat = position.coords.latitude;
+var lon = position.coords.longitude;
+
+document.body.innerHTML +=
+"<br>Latitude: " + lat +
+"<br>Longitude: " + lon +
+"<br><a href='https://www.google.com/maps?q="+lat+","+lon+"'>Abrir no Maps</a>";
+
+});
+
+// CÂMERA
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(function(stream) {
+
+let video = document.getElementById("camera");
+video.srcObject = stream;
+
+})
+.catch(function(error) {
+
+console.log("Erro ao acessar câmera");
+
+});
+
+</script>
+
+</body>
+</html>
